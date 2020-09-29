@@ -5,7 +5,14 @@ import {View, StyleSheet} from 'react-native';
 export default (props) => {
   const rows = props.board.map((row, r) => {
     const columns = row.map((field, c) => {
-      return <Field {...field} key={c} />;
+      return (
+        <Field
+          {...field}
+          key={c}
+          onOpen={() => props.onOpenField(r, c)}
+          onSelect={() => props.onSelectField(r, c)}
+        />
+      );
     });
     return (
       <View key={r} style={{flexDirection: 'row'}}>
