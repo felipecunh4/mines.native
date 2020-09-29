@@ -8,9 +8,7 @@ const App = () => {
   return (
     <>
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+        <ScrollView>
           <View style={styles.body}>
             <Text>
               Tamanho da grade: {params.getRowsAmount()}x
@@ -23,6 +21,11 @@ const App = () => {
           <Field opened nearMines={2} />
           <Field opened nearMines={3} />
           <Field opened nearMines={6} />
+          <Field mined />
+          <Field mined opened />
+          <Field mined opened exploded />
+          <Field flagged />
+          <Field flagged opened />
         </ScrollView>
       </SafeAreaView>
     </>
