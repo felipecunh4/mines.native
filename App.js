@@ -1,44 +1,53 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, View, Text} from 'react-native';
 
 import params from './src/params';
 import Field from './src/components/Field';
+import {createMinedBoard} from './src/functions';
+import MineField from './src/components/MineField';
 
-const App = () => {
-  return (
-    <>
-      <SafeAreaView>
-        <ScrollView>
-          <View style={styles.body}>
-            <Text>
-              Tamanho da grade: {params.getRowsAmount()}x
-              {params.getColumnsAmount()}
-            </Text>
-          </View>
-          <Field />
-          <Field opened />
-          <Field opened nearMines={1} />
-          <Field opened nearMines={2} />
-          <Field opened nearMines={3} />
-          <Field opened nearMines={6} />
-          <Field mined />
-          <Field mined opened />
-          <Field mined opened exploded />
-          <Field flagged />
-          <Field flagged opened />
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.createState();
+  }
+
+  minesMount = () => {
+    const cols = params.getColumnsAmount();
+    const rows = params.getRowsAmount();
+    return Math.ceil(cols * rows * params.difficultLevel);
+  };
+
+  createState = () => {
+    const cols = params.getColumnsAmount();
+    const rows = params.getRowsAmount();
+    return {
+      board: createMinedBoard(rows, cols, this.minesMount()),
+    };
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Iniciando o Mines!</Text>
+        <Text>
+          Tamanho da grade: {params.getRowsAmount()}x{params.getColumnsAmount()}
+        </Text>
+        <View style={styles.board}>
+          <MineField board={this.state.board} />
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: '#fafafa',
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-  body: {
-    backgroundColor: '#fff',
+  board: {
+    alignItems: 'center',
+    backgroundColor: '#AAA',
   },
 });
-
-export default App;
