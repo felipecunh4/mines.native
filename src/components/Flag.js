@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 export default (props) => {
   return (
@@ -8,12 +8,8 @@ export default (props) => {
         style={[styles.flagpole, props.bigger ? styles.flagpoleBigger : null]}
       />
       <View style={[styles.flag, props.bigger ? styles.flagBigger : null]} />
-      <View
-        style={[styles.base1, , props.bigger ? styles.base1Bigger : null]}
-      />
-      <View
-        style={[styles.base2, , props.bigger ? styles.base2Bigger : null]}
-      />
+      <View style={[styles.base1, props.bigger ? styles.base1Bigger : null]} />
+      <View style={[styles.base2, props.bigger ? styles.base2Bigger : null]} />
     </View>
   );
 };
@@ -33,7 +29,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 5,
     width: 6,
-    backgroundColor: '#f22',
+    backgroundColor: '#F22',
     marginLeft: 3,
   },
   base1: {
@@ -65,13 +61,13 @@ const styles = StyleSheet.create({
   base1Bigger: {
     height: 4,
     width: 12,
-    marginTop: 10,
+    marginTop: 20,
     marginLeft: 12,
   },
   base2Bigger: {
     height: 4,
     width: 20,
-    marginTop: 8,
-    marginLeft: 24,
+    marginLeft: 8,
+    marginTop: 24,
   },
 });
